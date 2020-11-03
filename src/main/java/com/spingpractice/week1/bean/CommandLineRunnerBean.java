@@ -1,6 +1,6 @@
 package com.spingpractice.week1.bean;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -22,9 +22,9 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     private final UserService userService;
 
     public void run(String... args) {
-        var dtos = Arrays.asList(new UserDto("username1", "male", Date.valueOf("2000-10-10"), "bio1"),
-            new UserDto("username2", "female", Date.valueOf("2001-10-10"), "bio2"),
-            new UserDto("username3", "unknown", Date.valueOf("2002-10-10"), "bio3"));
+        var dtos = Arrays.asList(new UserDto("username1", "male", LocalDate.of(2000, 10, 10), "bio1"),
+            new UserDto("username2", "female", LocalDate.of(2001, 10, 10), "bio2"),
+            new UserDto("username3", "unknown", LocalDate.of(2002, 10, 10), "bio3"));
         var userIds = dtos.stream().map(userService::saveUser).map(UUID::toString).collect(Collectors.joining(", "));
         log.info("Users with ids:{} created", userIds);
     }

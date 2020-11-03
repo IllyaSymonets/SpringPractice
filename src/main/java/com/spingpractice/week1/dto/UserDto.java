@@ -1,15 +1,16 @@
 package com.spingpractice.week1.dto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import static com.spingpractice.week1.constant.Constants.USERNAME_MAX_LENGTH;
-import static com.spingpractice.week1.constant.Constants.USERNAME_MIN_LENGTH;
+import static com.spingpractice.week1.constant.UserValidationConstants.USERNAME_MAX_LENGTH;
+import static com.spingpractice.week1.constant.UserValidationConstants.USERNAME_MIN_LENGTH;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class UserDto {
     private String username;
     private String sex;
     @NotNull
-    private Date birthday;
+    @Past
+    private LocalDate birthday;
     private String bio;
 }
