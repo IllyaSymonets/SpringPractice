@@ -1,0 +1,34 @@
+server:
+  port : 8082
+
+spring:
+  profiles:
+    active: postgres
+
+---
+spring:
+  profiles: local
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  jooq:
+    sql-dialect: org.hibernate.dialect.H2Dialect
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+
+spring:
+  profiles: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demo
+    username: postgres_user
+    password: postgres_pass
+  jpa:
+    hibernate:
+      ddl-auto: update
